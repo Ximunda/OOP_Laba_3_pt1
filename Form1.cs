@@ -27,13 +27,13 @@ namespace OOP_Laba_3
         private void mainForm_MouseClick(object sender, MouseEventArgs e)
         {
             CCircle circle = new CCircle(e.X, e.Y);
-            container.add(circle);
+            container.Add(circle);
             Invalidate();
         }
 
         private void mainForm_Paint(object sender, PaintEventArgs e)
         {
-            container.drawAll(e.Graphics);
+            container.DrawAll(e.Graphics);
         }
 
         private void mainForm_Resize(object sender, EventArgs e)
@@ -43,16 +43,17 @@ namespace OOP_Laba_3
 
         private void clear_btn_Click(object sender, EventArgs e)
         {
-            container.clear();
+            container.Clear();
             Invalidate();
         }
     };
     public class CCircle
     {
-        private int X { get; }
-        private int Y { get; }
-        private Color Circle_color { get; set; }
+        private int X;
+        private int Y;
+        private Color Circle_color;
         private int Radius;
+        private bool Selected = false;
         public CCircle(int x, int y, int radius, Color color)
         {
             Radius = radius;
@@ -67,37 +68,48 @@ namespace OOP_Laba_3
             Y = y;
             Circle_color = Color.Black;
         }
-        public void draw(Graphics g)
+        public void Draw(Graphics g)
         {
+            if (Selected)
+            {
+                Circle_color = Color.Red;
+            }
             using (Pen pen = new Pen(Circle_color, 2))
             {
                 g.DrawEllipse(pen, X - Radius, Y - Radius, Radius * 2, Radius * 2);
             }
+        }
+        private bool IsClicked(int mx, int my)
+        {
+            int dx = mx - X;
+            int dy = my - Y;
+            bool result = (dx * dx) + (dy * dy) <= (Radius * Radius);
+            return result;
         }
     }
     public class Container
     {
         private List<CCircle> Circles = new List<CCircle>();
 
-        public void add(CCircle circle)
+        public void Add(CCircle circle)
         {
             Circles.Add(circle);
         }
-        public void remove(CCircle circle)
+        public void Remove(CCircle circle)
         {
             Circles.Remove(circle);
         }
-        public void clear()
+        public void Clear()
         {
             
             Circles.Clear();
            
         }
-        public void drawAll(Graphics g)
+        public void DrawAll(Graphics g)
         {
             foreach (CCircle circle in Circles)
             {
-                circle.draw(g);
+                circle.Draw(g);
             }
         }
     }
