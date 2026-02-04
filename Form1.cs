@@ -11,15 +11,36 @@ using System.Windows.Forms;
 
 namespace OOP_Laba_3
 {
-    public partial class Form1 : Form
+    
+    public partial class mainForm : Form
     {
-        public Form1()
+        public mainForm()
         {
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+    }
+    public class CCircle
+    {
+        private int _radius;
+        private int _x;
+        private int _y;
+        public CCircle(int radius, int x, int y)
+        {
+            _radius = radius;
+            _x = x;
+            _y = y;
+        }
+        public void draw(Graphics g)
+        {
+            using (Brush brush = new SolidBrush(Color.Black))
+            {
+                g.FillEllipse(brush, _x - _radius, _y - _radius, _radius * 2, _radius * 2);
+            }
         }
     }
 }
