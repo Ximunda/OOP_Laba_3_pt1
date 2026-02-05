@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OOP_Laba_3
@@ -164,7 +158,7 @@ namespace OOP_Laba_3
                 {
                     ALOS_flag = true;
                     c.SetSelected(true);
-                    //break; // break значит что выделятся на пересечении будет только один более старший объект
+                    break; // break значит что выделятся на пересечении будет только один более старший объект
                 }
             }
 
