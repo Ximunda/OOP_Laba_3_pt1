@@ -18,6 +18,7 @@ namespace OOP_Laba_3
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            this.KeyPreview = true;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -57,11 +58,22 @@ namespace OOP_Laba_3
 
         private void mainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            keys_label.Text = "Key pressed: " + e.KeyCode.ToString();
             if (e.KeyCode == Keys.Delete)
             {
                 container.RemoveSelected();
                 Invalidate();
             }
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
+
+        private void mainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            lbXcord.Text = e.X.ToString();
+            lbYcord.Text = e.Y.ToString();
         }
     };
     public class CCircle
@@ -142,19 +154,20 @@ namespace OOP_Laba_3
         public void OnMouseClick(int x, int y, bool ctrlPressed)
         {
             bool ALOS_flag = false; // (At Least One Selected - flag)
+            if (!ctrlPressed)
+            {
+                ClearSelection();
+            }
             foreach (CCircle c in Circles)
             {
                 if (c.IsClicked(x, y))
                 {
                     ALOS_flag = true;
-                    if (!ctrlPressed)
-                    {
-                        ClearSelection();
-                    }
-                    c.SetSelected(!c.IsSelected());
-                    break;
+                    c.SetSelected(true);
+                    //break; // break значит что выделятся на пересечении будет только один более старший объект
                 }
             }
+
             if (!ALOS_flag && !ctrlPressed)
             {
                 ClearSelection();
@@ -162,13 +175,7 @@ namespace OOP_Laba_3
         }
         public void RemoveSelected()
         {
-            foreach (CCircle c in Circles)
-            {
-                if (c.IsSelected())
-                {
-                    Circles.Remove(c);
-                }
-            }
+            Circles.RemoveAll(c => c.IsSelected());
         }
         public void DrawAll(Graphics g)
         {
