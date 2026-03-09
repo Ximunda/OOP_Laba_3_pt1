@@ -32,6 +32,7 @@
             this.keys_label = new System.Windows.Forms.Label();
             this.lbXcord = new System.Windows.Forms.Label();
             this.lbYcord = new System.Windows.Forms.Label();
+            this.help_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // clear_btn
@@ -71,11 +72,23 @@
             this.lbYcord.TabIndex = 3;
             this.lbYcord.Text = "0";
             // 
+            // help_btn
+            // 
+            this.help_btn.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.help_btn.Location = new System.Drawing.Point(1025, 7);
+            this.help_btn.Name = "help_btn";
+            this.help_btn.Size = new System.Drawing.Size(75, 28);
+            this.help_btn.TabIndex = 4;
+            this.help_btn.Text = "Help";
+            this.help_btn.UseVisualStyleBackColor = true;
+            this.help_btn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.help_btn_MouseDown);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 488);
+            this.Controls.Add(this.help_btn);
             this.Controls.Add(this.lbYcord);
             this.Controls.Add(this.lbXcord);
             this.Controls.Add(this.keys_label);
@@ -99,6 +112,7 @@
         private System.Windows.Forms.Label keys_label;
         private System.Windows.Forms.Label lbXcord;
         private System.Windows.Forms.Label lbYcord;
+        private System.Windows.Forms.Button help_btn;
     }
 }
 

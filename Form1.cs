@@ -69,6 +69,11 @@ namespace OOP_Laba_3
             lbXcord.Text = e.X.ToString();
             lbYcord.Text = e.Y.ToString();
         }
+
+        private void help_btn_MouseDown(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show("ЛКМ - выделить объект(-ы)\nПКМ - создать объект\nDel - удалить выделенные объекты");
+        }
     };
     public class CCircle
     {
@@ -158,7 +163,7 @@ namespace OOP_Laba_3
                 {
                     ALOS_flag = true;
                     c.SetSelected(true);
-                    break; // break значит что выделятся на пересечении будет только один более старший объект
+                    //break; // break значит что выделятся на пересечении будет только один более старший объект
                 }
             }
 
