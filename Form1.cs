@@ -167,10 +167,11 @@ namespace OOP_Laba_3
                 }
             }
 
-            if (!ALOS_flag && !ctrlPressed)
+            if (ALOS_flag || ctrlPressed) //Отчистка выделения при пустом клике по форме
             {
-                ClearSelection();
+                return;
             }
+            ClearSelection();
         }
         public void RemoveSelected()
         {
